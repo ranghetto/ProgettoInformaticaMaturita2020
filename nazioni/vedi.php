@@ -37,8 +37,8 @@
                     <div class='form-group mx-2 mb-2'>
                         <input type='text' name='cerca' class='form-control' placeholder='Cerca Nazione' value='".trim($cerca, '%')."'>
                     </div>
-                    <button type='submit' class='btn btn-primary mb-2'><i class='fas fa-search'></i></button>&nbsp;
-                    <a href='./index.php?ordine=".$ordine."' class='btn btn-danger mb-2'><i class='fas fa-times'></i></a>
+                    <button type='submit' class='btn btn-outline-primary mb-2'><i class='fas fa-search'></i></button>&nbsp;
+                    <a href='./index.php?ordine=".$ordine."' class='btn btn-outline-danger mb-2'><i class='fas fa-times'></i></a>
                 </form>
             </div>
             <div class='row'>
@@ -68,7 +68,11 @@
                     <tr>
                         <td></td>
                         <td></td>
-                        <td class='align-middle'><a class='btn btn-success' href='./inserisci.php'>Nuova Nazione</a></td>
+                        <td class='align-middle'>
+                            <button type='button' class='btn btn-outline-success' data-toggle='modal' data-target='#inserimento'>
+                                Nuova Nazione
+                            </button>
+                        </td>
                     </tr>";
         
         while ($row = mysqli_fetch_array($query)) {
@@ -81,8 +85,8 @@
 
             $body .= "      <td class='align-middle'>".$row['nazione']."</td>
                             <td class='align-middle'>
-                                <a class='btn btn-primary' href='./modifica.php?idNazione=".$row["idNazione"]."'>Modifica</a>
-                                <a class='btn btn-danger' href='./elimina.php?idNazione=".$row["idNazione"]."'>Elimina</a>
+                                <a class='btn btn-outline-primary' href='./modifica.php?idNazione=".$row["idNazione"]."'>Modifica</a>
+                                <a class='btn btn-outline-danger' href='./elimina.php?idNazione=".$row["idNazione"]."'>Elimina</a>
                             </td>
                         </tr>";
         }
@@ -101,3 +105,37 @@
 
     echo $body;
 ?>
+
+<!-- Modal Inserimento -->
+<div class="modal fade" id="inserimento" tabindex="-1" role="dialog" aria-labelledby="InserimentoNuovaNazione" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Inserisci Nuova Nazione</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="col-md-12" action="./inserisci.php" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="nome">Nome</label>
+                        <input class="form-control" type="text" id="nome"
+                                name="nome" placeholder="Nome">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="icona">Icona Bandiera</label>
+                        <input type="file" name="icona" id="icona">
+                    </div>
+                    
+                    <input class="btn btn-success" type="submit"
+                            name="submit" id="submit" value="Inserisci">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+            </div>
+        </div>
+    </div>
+</div>
