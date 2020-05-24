@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Elimina Sport</title>
+        <title>Elimina Disciplina</title>
         <?php include("../static/bootstrapCSS.html") ?>
     </head>
     <body>
@@ -14,24 +14,24 @@
 
                 include("../dati.php");
 
-                $id = $_GET['idSport'];
+                $id = $_GET['idDisciplina'];
 
                 $conn = mysqli_connect($host, $user, $pwd, $schema)
                             or die("Impossibile connettersi al database.");
 
-                $sql = "DELETE FROM sports WHERE idSport = ".$id;
+                $sql = "DELETE FROM discipline WHERE idDisciplina = ".$id;
 
                 $query = mysqli_query($conn, $sql);
 
                 if($query)
                     echo "  <div class='alert alert-success alert-dismissible fade show' role='alert'>
-                                <strong>Sport eliminato con successo!</strong> Torna <a href='./index.php' class='alert-link'>indietro</a> per visualizzarli tutti.
+                                <strong>Disciplina eliminata con successo!</strong> Torna <a href='./index.php' class='alert-link'>indietro</a> per visualizzarle tutte.
                             </div>";
                 else
                     echo "  <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                                <strong>Errore nell'eliminazione dello sport!</strong>
+                                <strong>Errore nell'eliminazione della disciplina!</strong>
                                 Torna <a href='./index.php' class='alert-link'>indietro</a>
-                                oppure <a href='./elimina.php?idSport=".$id."' class='alert-link'>riprova</a>.
+                                oppure <a href='./elimina.php?idDisciplina=".$id."' class='alert-link'>riprova</a>.
                             </div>";
 
             ?>

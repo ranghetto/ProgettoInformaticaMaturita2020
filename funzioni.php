@@ -17,8 +17,8 @@ function getURL($pagina) {
     return $url . $pagina;
 }
 
-function caricaFile($submit, $fileDaCaricare){
-    $cartella = "../static/bandiere/";
+function caricaFile($submit, $fileDaCaricare, $cartellaFinale){
+    $cartella = "../static/".$cartellaFinale."/";
     
     $file = $cartella . basename($fileDaCaricare["name"]);
     $riuscito = "si";

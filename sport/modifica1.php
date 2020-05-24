@@ -15,7 +15,7 @@
                 include("../dati.php");
 
                 // Controllo che l'id della nazione esista
-                if( isset($_POST['idSport']) || ( isset($_POST['sport']) && $_POST['sport']!="" ) ){
+                if( isset($_POST['idSport']) && ( isset($_POST['sport']) && $_POST['sport']!="" ) ){
                     $id = $_POST['idSport'];
                     $nome = $_POST['sport'];
 

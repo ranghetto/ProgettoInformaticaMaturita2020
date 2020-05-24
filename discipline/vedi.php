@@ -12,9 +12,10 @@
     if( isset($_GET["cerca"]) && $_GET["cerca"]!=="" )
         $cerca = "%".$_GET["cerca"]."%";
 
-    $sql = "SELECT * FROM nazioni
-            WHERE nazione LIKE \"".$cerca."\"
-            ORDER BY nazione ".$ordine;
+    $sql = "SELECT * FROM discipline AS d
+            INNER JOIN sports AS s ON s.idSport = d.idSport 
+            WHERE disciplina LIKE \"".$cerca."\"
+            ORDER BY disciplina ".$ordine;
 
     $query = mysqli_query($conn, $sql);
 
@@ -24,7 +25,7 @@
     if($query){
         if (mysqli_num_rows($query) === 0){
             $body .= "  <div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                            <strong>Nessuna nazione trovata!</strong>
+                            <strong>Nessuna disciplina trovata!</strong>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                                 <span aria-hidden='true'>&times;</span>
                             </button>
@@ -35,7 +36,7 @@
             <div class='row justify-content-center' style='padding-top: 7px;'>
                 <form class='form-inline' action='./index.php'>
                     <div class='form-group mx-2 mb-2'>
-                        <input type='text' name='cerca' class='form-control' placeholder='Cerca Nazione' value='".trim($cerca, '%')."'>
+                        <input type='text' name='cerca' class='form-control' placeholder='Cerca Disciplina' value='".trim($cerca, '%')."'>
                     </div>
                     <button type='submit' class='btn btn-outline-primary mb-2'><i class='fas fa-search'></i></button>&nbsp;
                     <a href='./index.php?ordine=".$ordine."' class='btn btn-outline-danger mb-2'><i class='fas fa-times'></i></a>
@@ -45,8 +46,8 @@
                 <table class='table table-striped'>
                     <thead class='thead-light'>
                         <tr>
-                            <th>Bandiera</th>
-                            <th class='vertical-align'>Nazione";
+                            <th>Sport</th>
+                            <th class='vertical-align'>Disciplina";
         if($ordine === "ASC")
             $body .= "          <a href='./index.php?ordine=ASC&cerca=".trim($cerca, '%')."'><i class='fas fa-sort-alpha-down'></i></a>
                                 <a href='./index.php?ordine=DESC&cerca=".trim($cerca, '%')."'>
@@ -62,26 +63,34 @@
                                 </a>
                                 <a href='./index.php?ordine=DESC&cerca=".trim($cerca, '%')."'><i class='fas fa-sort-alpha-up'></i></a>";
         $body .= "          </th>
+                            <th>Simbolo</th>
                             <th>Azioni</th>
                         </tr>
                     </thead>
                     <tr>
                         <td></td>
                         <td></td>
+                        <td></td>
                         <td class='align-middle'>
                             <button type='button' class='btn btn-outline-success' data-toggle='modal' data-target='#inserimento'>
-                                Nuova Nazione
+                                Nuova Disciplina
                             </button>
                         </td>
                     </tr>";
         
         while ($row = mysqli_fetch_array($query)) {
             $body .= "  <tr>
-                            <td class='align-middle'><image src='../static/bandiere/".$row['icona']."'></td>
-                            <td class='align-middle'>".$row['nazione']."</td>
-                            <td class='align-middle'>
-                                <a class='btn btn-outline-primary' href='./modifica.php?idNazione=".$row["idNazione"]."'>Modifica</a>
-                                <a class='btn btn-outline-danger' href='./elimina.php?idNazione=".$row["idNazione"]."'>Elimina</a>
+                            <td class='align-middle'>".$row['sport']."</td>
+                            <td class='align-middle'>".$row['disciplina']."</td>";
+
+            if($row['icona'] !== "NULL")
+                $body .= "  <td class='align-middle'><image src='../static/discipline/".$row['icona']."'></td>";
+            else
+                $body .= "  <td class='align-middle'><image src='../static/discipline/notfound.png'></td>";
+
+            $body .= "      <td class='align-middle'>
+                                <a class='btn btn-outline-primary' href='./modifica.php?idDisciplina=".$row["idDisciplina"]."'>Modifica</a>
+                                <a class='btn btn-outline-danger' href='./elimina.php?idDisciplina=".$row["idDisciplina"]."'>Elimina</a>
                             </td>
                         </tr>";
         }
@@ -96,7 +105,6 @@
                         </button>
                     </div>";
     }
-    
 
     echo $body;
 ?>

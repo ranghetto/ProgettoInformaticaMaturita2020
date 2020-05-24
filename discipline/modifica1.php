@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Modifica Nazione</title>
+        <title>Modifica Disciplina</title>
         <?php include("../static/bootstrapCSS.html") ?>
     </head>
     <body>
@@ -15,24 +15,25 @@
                 include("../dati.php");
 
                 // Controllo che l'id della nazione esista
-                if( isset($_POST['idNazione']) && ( isset($_POST['nazione']) && $_POST['nazione']!="" ) ){
-                    $id = $_POST['idNazione'];
-                    $nome = $_POST['nazione'];
+                if( isset($_POST['idDisciplina']) && ( isset($_POST['disciplina']) && $_POST['disciplina']!="" ) && isset($_POST['sport']) ){
+                    $id = $_POST['idDisciplina'];
+                    $nome = $_POST['disciplina'];
+                    $sport = $_POST['sport'];
                     $vecchiaIcona = $_POST['vecchiaIcona'];
 
                     $conn = mysqli_connect($host, $user, $pwd, $schema)
                                 or die("Impossibile connettersi al database.");
                     
-                    $sql = "UPDATE nazioni SET nazione = \"".$nome."\" WHERE idNazione = ".$id;
+                    $sql = "UPDATE discipline SET disciplina = \"".$nome."\", idSport = \"".$sport."\" WHERE idDisciplina = ".$id;
 
                     if( file_exists($_FILES['icona']['tmp_name']) && is_uploaded_file($_FILES['icona']['tmp_name'])){
 
                         $file = caricaFile($_POST["submit"], $_FILES["icona"]);
                         if($file["caricamentoRiuscito"]){
-                            $sql = "UPDATE nazioni SET nazione = \"".$nome."\", icona = \"".$file["nomeIcona"]."\" WHERE idNazione = ".$id;
+                            $sql = "UPDATE discipline SET disciplina = \"".$nome."\",, idSport = \"".$sport."\" icona = \"".$file["nomeIcona"]."\" WHERE idDisciplina = ".$id;
                             //elimino la vecchia immagine se il caricamento di quella nuova è avvenuto con successo
                             if($vecchiaIcona != "NULL")
-                                unlink("../static/bandiere/".$vecchiaIcona);
+                                unlink("../static/discipline/".$vecchiaIcona);
                         } else 
                             echo $file["messaggio"];
                     }
@@ -41,19 +42,19 @@
 
                     if($query)
                         echo "  <div class='alert alert-success alert-dismissible fade show' role='alert'>
-                                    <strong>Nazione modificata con successo!</strong> Torna <a href='./index.php' class='alert-link'>indietro</a> per visualizzarle tutte.
+                                    <strong>Disciplina modificata con successo!</strong> Torna <a href='./index.php' class='alert-link'>indietro</a> per visualizzarle tutte.
                                 </div>";
                     else
                         echo "  <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                                    <strong>Errore nella modifica della nazione!</strong>
+                                    <strong>Errore nella modifica della disciplina!</strong>
                                     Torna <a href='./index.php' class='alert-link'>indietro</a>
-                                    oppure <a href='./modifica.php?idNazione=".$id."' class='alert-link'>riprova</a>.
+                                    oppure <a href='./modifica.php?idDisciplina=".$id."' class='alert-link'>riprova</a>.
                                 </div>";
                 } else
                     echo "  <div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                                <strong>Errore nella modifica della nazione! I dati non possono essere vuoti.</strong>
+                                <strong>Errore nella modifica della disciplina! I dati non possono essere vuoti.</strong>
                                 Torna <a href='./index.php' class='alert-link'>indietro</a>
-                                oppure <a href='./modifica.php?idNazione=".$id."' class='alert-link'>riprova</a>.
+                                oppure <a href='./modifica.php?idDisciplina=".$id."' class='alert-link'>riprova</a>.
                             </div>";
 
             ?>

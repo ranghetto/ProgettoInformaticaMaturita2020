@@ -32,15 +32,11 @@
                             </div>";
                 else{
                     $row = mysqli_fetch_array($query);
-                    $body = "   <form class='col-md-4' action='modifica1.php' method='POST' enctype='multipart/form-data'>";
-                    if($row['icona'] !== "NULL")
-                        $body .= "  <image src='../static/bandiere/".$row['icona']."'>";
-                    else
-                        $body .= "  <image src='../static/bandiere/notfound.png'>";
-                        
-                    $body .= "      <input type='hidden' name='vecchiaIcona' value='".$row['icona']."'>
+                    $body = "   <form class='col-md-4' action='modifica1.php' method='POST' enctype='multipart/form-data'>
+                                    <image src='../static/bandiere/".$row['icona']."'>
+                                    <input type='hidden' name='vecchiaIcona' value='".$row['icona']."'>
                                     <div class='form-group'>
-                                        <label for='nazione'>Modifica Nome</label>
+                                        <label for='nazione'>Modifica Nazione</label>
                                         <input class='form-control' type='text' id='nazione'
                                                 name='nazione' value='".$row['nazione']."'>
                                     </div>
