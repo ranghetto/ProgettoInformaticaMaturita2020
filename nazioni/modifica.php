@@ -40,9 +40,9 @@
                         
                     $body .= "      <input type='hidden' name='vecchiaIcona' value='".$row['icona']."'>
                                     <div class='form-group'>
-                                        <label for='nome'>Modifica Nome</label>
-                                        <input class='form-control' type='text' id='nome'
-                                                name='nome' value='".$row['nazione']."'>
+                                        <label for='nazione'>Modifica Nome</label>
+                                        <input class='form-control' type='text' id='nazione'
+                                                name='nazione' value='".$row['nazione']."'>
                                     </div>
                                     <div class='form-group'>
                                         <label for='icona'>Modifica Icona Bandiera</label>

@@ -12,9 +12,9 @@
     if( isset($_GET["cerca"]) && $_GET["cerca"]!=="" )
         $cerca = "%".$_GET["cerca"]."%";
 
-    $sql = "SELECT * FROM nazioni
-            WHERE nazione LIKE \"".$cerca."\"
-            ORDER BY nazione ".$ordine;
+    $sql = "SELECT * FROM sports
+            WHERE sport LIKE \"".$cerca."\"
+            ORDER BY sport ".$ordine;
 
     $query = mysqli_query($conn, $sql);
 
@@ -24,7 +24,7 @@
     if($query){
         if (mysqli_num_rows($query) === 0){
             $body .= "  <div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                            <strong>Nessuna nazione trovata!</strong>
+                            <strong>Nessuno sport trovato!</strong>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                                 <span aria-hidden='true'>&times;</span>
                             </button>
@@ -35,7 +35,7 @@
             <div class='row justify-content-center' style='padding-top: 7px;'>
                 <form class='form-inline' action='./index.php'>
                     <div class='form-group mx-2 mb-2'>
-                        <input type='text' name='cerca' class='form-control' placeholder='Cerca Nazione' value='".trim($cerca, '%')."'>
+                        <input type='text' name='cerca' class='form-control' placeholder='Cerca Sport' value='".trim($cerca, '%')."'>
                     </div>
                     <button type='submit' class='btn btn-outline-primary mb-2'><i class='fas fa-search'></i></button>&nbsp;
                     <a href='./index.php?ordine=".$ordine."' class='btn btn-outline-danger mb-2'><i class='fas fa-times'></i></a>
@@ -45,8 +45,7 @@
                 <table class='table table-striped'>
                     <thead class='thead-light'>
                         <tr>
-                            <th>Bandiera</th>
-                            <th class='vertical-align'>Nazione";
+                            <th class='vertical-align'>Sport";
         if($ordine === "ASC")
             $body .= "          <a href='./index.php?ordine=ASC&cerca=".trim($cerca, '%')."'><i class='fas fa-sort-alpha-down'></i></a>
                                 <a href='./index.php?ordine=DESC&cerca=".trim($cerca, '%')."'>
@@ -67,26 +66,19 @@
                     </thead>
                     <tr>
                         <td></td>
-                        <td></td>
                         <td class='align-middle'>
                             <button type='button' class='btn btn-outline-success' data-toggle='modal' data-target='#inserimento'>
-                                Nuova Nazione
+                                Nuovo Sport
                             </button>
                         </td>
                     </tr>";
         
         while ($row = mysqli_fetch_array($query)) {
-            $body .= "  <tr>";
-
-            if($row['icona'] !== "NULL")
-                $body .= "  <td class='align-middle'><image src='../static/bandiere/".$row['icona']."'></td>";
-            else
-                $body .= "  <td class='align-middle'><image src='../static/bandiere/notfound.png'></td>";
-
-            $body .= "      <td class='align-middle'>".$row['nazione']."</td>
+            $body .= "  <tr>
+                            <td class='align-middle'>".$row['sport']."</td>
                             <td class='align-middle'>
-                                <a class='btn btn-outline-primary' href='./modifica.php?idNazione=".$row["idNazione"]."'>Modifica</a>
-                                <a class='btn btn-outline-danger' href='./elimina.php?idNazione=".$row["idNazione"]."'>Elimina</a>
+                                <a class='btn btn-outline-primary' href='./modifica.php?idSport=".$row["idSport"]."'>Modifica</a>
+                                <a class='btn btn-outline-danger' href='./elimina.php?idSport=".$row["idSport"]."'>Elimina</a>
                             </td>
                         </tr>";
         }
@@ -107,11 +99,11 @@
 ?>
 
 <!-- Modal Inserimento -->
-<div class="modal fade" id="inserimento" tabindex="-1" role="dialog" aria-labelledby="InserimentoNuovaNazione" aria-hidden="true">
+<div class="modal fade" id="inserimento" tabindex="-1" role="dialog" aria-labelledby="InserimentoNuovoSport" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Inserisci Nuova Nazione</h5>
+                <h5 class="modal-title">Inserisci Nuovo Sport</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -119,14 +111,9 @@
             <div class="modal-body">
                 <form class="col-md-12" action="./inserisci.php" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="nazione">Nazione</label>
-                        <input class="form-control" type="text" id="nazione"
-                                name="nazione" placeholder="Nazione">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="icona">Icona Bandiera</label>
-                        <input type="file" name="icona" id="icona">
+                        <label for="sport">Sport</label>
+                        <input class="form-control" type="text" id="sport"
+                                name="sport" placeholder="Sport">
                     </div>
                     
                     <input class="btn btn-success" type="submit"
