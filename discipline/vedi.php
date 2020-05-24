@@ -24,7 +24,7 @@
             INNER JOIN sports AS s ON s.idSport = d.idSport 
             WHERE disciplina LIKE \"".$cerca."\" AND 
                 sport LIKE \"".$cercas."\"
-            ORDER BY disciplina ".$ordined.", sport ".$ordines;
+            ORDER BY sport ".$ordines.", disciplina ".$ordined;
 
     $query = mysqli_query($conn, $sql);
 
