@@ -26,7 +26,11 @@
             </li>
 
             <li class="nav-item">
-            <?php echo "<a class=\"nav-link\" href=\"".getURL("/discipline")."\">Discipline</a>" ?>
+                <?php echo "<a class=\"nav-link\" href=\"".getURL("/sport")."\">Sport</a>" ?>
+            </li>
+
+            <li class="nav-item">
+                <?php echo "<a class=\"nav-link\" href=\"".getURL("/discipline")."\">Discipline</a>" ?>
             </li>
         </ul>
     </div>
