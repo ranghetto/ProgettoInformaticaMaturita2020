@@ -4,13 +4,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Modifica Nazione</title>
+        <title>Modifica Sport</title>
         <?php include("../static/bootstrapCSS.html") ?>
     </head>
     <body>
         <?php include("../navbar.php") ?>
         <div class="container-fluid">
-            <h1>Modifica Nazione</h1>
+            <h1>Modifica Sport</h1>
             
             <?php
 

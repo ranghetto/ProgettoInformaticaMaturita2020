@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Nazioni Olimpiadi</title>
+        <title>Sport ~ Olimpiadi</title>
         <?php include("../static/bootstrapCSS.html") ?>
     </head>
     <body>

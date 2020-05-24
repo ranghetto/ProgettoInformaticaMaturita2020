@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Modifica Nazione</title>
+        <title>Modifica Sport</title>
         <?php include("../static/bootstrapCSS.html") ?>
     </head>
     <body>
