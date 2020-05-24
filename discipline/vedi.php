@@ -16,9 +16,14 @@
     if( isset($_GET["cerca"]) && $_GET["cerca"]!=="" )
         $cerca = "%".$_GET["cerca"]."%";
 
+    $cercas = "%%";
+    if( isset($_GET["cercas"]) && $_GET["cercas"]!=="" )
+        $cercas = "%".$_GET["cercas"]."%";
+
     $sql = "SELECT * FROM discipline AS d
             INNER JOIN sports AS s ON s.idSport = d.idSport 
-            WHERE disciplina LIKE \"".$cerca."\"
+            WHERE disciplina LIKE \"".$cerca."\" AND 
+                sport LIKE \"".$cercas."\"
             ORDER BY disciplina ".$ordined.", sport ".$ordines;
 
     $query = mysqli_query($conn, $sql);
@@ -37,8 +42,11 @@
         }
 
         $body .= "
-            <div class='row justify-content-center' style='padding-top: 7px;'>
+            <div class='row justify-content-center' style='padding-top: 7px;'> 
                 <form class='form-inline' action='./index.php'>
+                    <div class='form-group mx-2 mb-2'>
+                        <input type='text' name='cercas' class='form-control' placeholder='Cerca Sport' value='".trim($cercas, '%')."'>
+                    </div>
                     <div class='form-group mx-2 mb-2'>
                         <input type='text' name='cerca' class='form-control' placeholder='Cerca Disciplina' value='".trim($cerca, '%')."'>
                     </div>
@@ -53,35 +61,35 @@
                             <th>Sport";
         
         if($ordines === "ASC")
-            $body .= "          <a href='./index.php?ordines=ASC&ordined=".$ordined."&cerca=".trim($cerca, '%')."'><i class='fas fa-sort-alpha-down'></i></a>
-                                <a href='./index.php?ordines=DESC&ordined=".$ordined."&cerca=".trim($cerca, '%')."'>
+            $body .= "          <a href='./index.php?ordines=ASC&ordined=".$ordined."&cerca=".trim($cerca, '%')."&cercas=".trim($cercas, '%')."'><i class='fas fa-sort-alpha-down'></i></a>
+                                <a href='./index.php?ordines=DESC&ordined=".$ordined."&cerca=".trim($cerca, '%')."&cercas=".trim($cercas, '%')."'>
                                     <span style='color: Grey;'>
                                         <i class='fas fa-sort-alpha-up'></i>
                                     </span>
                                 </a>";
         else
-            $body .= "          <a href='./index.php?ordines=ASC&ordined=".$ordined."&cerca=".trim($cerca, '%')."'>
+            $body .= "          <a href='./index.php?ordines=ASC&ordined=".$ordined."&cerca=".trim($cerca, '%')."&cercas=".trim($cercas, '%')."'>
                                     <span style='color: Grey;'>
                                         <i class='fas fa-sort-alpha-down'></i>
                                     </span>
                                 </a>
-                                <a href='./index.php?ordines=DESC&ordined=".$ordined."&cerca=".trim($cerca, '%')."'><i class='fas fa-sort-alpha-up'></i></a>";
+                                <a href='./index.php?ordines=DESC&ordined=".$ordined."&cerca=".trim($cerca, '%')."&cercas=".trim($cercas, '%')."'><i class='fas fa-sort-alpha-up'></i></a>";
         $body .= "          </th>
                             <th class='vertical-align'>Disciplina";
         if($ordined === "ASC")
-            $body .= "          <a href='./index.php?ordined=ASC&ordines=".$ordines."&cerca=".trim($cerca, '%')."'><i class='fas fa-sort-alpha-down'></i></a>
-                                <a href='./index.php?ordined=DESC&ordines=".$ordines."&cerca=".trim($cerca, '%')."'>
+            $body .= "          <a href='./index.php?ordined=ASC&ordines=".$ordines."&cerca=".trim($cerca, '%')."&cercas=".trim($cercas, '%')."'><i class='fas fa-sort-alpha-down'></i></a>
+                                <a href='./index.php?ordined=DESC&ordines=".$ordines."&cerca=".trim($cerca, '%')."&cercas=".trim($cercas, '%')."'>
                                     <span style='color: Grey;'>
                                         <i class='fas fa-sort-alpha-up'></i>
                                     </span>
                                 </a>";
         else
-            $body .= "          <a href='./index.php?ordined=ASC&ordines=".$ordines."&cerca=".trim($cerca, '%')."'>
+            $body .= "          <a href='./index.php?ordined=ASC&ordines=".$ordines."&cerca=".trim($cerca, '%')."&cercas=".trim($cercas, '%')."'>
                                     <span style='color: Grey;'>
                                         <i class='fas fa-sort-alpha-down'></i>
                                     </span>
                                 </a>
-                                <a href='./index.php?ordined=DESC&ordines=".$ordines."&cerca=".trim($cerca, '%')."'><i class='fas fa-sort-alpha-up'></i></a>";
+                                <a href='./index.php?ordined=DESC&ordines=".$ordines."&cerca=".trim($cerca, '%')."&cercas=".trim($cercas, '%')."'><i class='fas fa-sort-alpha-up'></i></a>";
         $body .= "          </th>
                             <th>Simbolo</th>
                             <th>Azioni</th>
