@@ -58,7 +58,7 @@
                 <table class='table table-striped'>
                     <thead class='thead-light'>
                         <tr>
-                            <th>Sport";
+                            <th class='text-center'>Sport";
         
         if($ordines === "ASC")
             $body .= "          <a href='./index.php?ordines=ASC&ordined=".$ordined."&cerca=".trim($cerca, '%')."&cercas=".trim($cercas, '%')."'><i class='fas fa-sort-alpha-down'></i></a>
@@ -75,7 +75,7 @@
                                 </a>
                                 <a href='./index.php?ordines=DESC&ordined=".$ordined."&cerca=".trim($cerca, '%')."&cercas=".trim($cercas, '%')."'><i class='fas fa-sort-alpha-up'></i></a>";
         $body .= "          </th>
-                            <th class='vertical-align'>Disciplina";
+                            <th class='vertical-align text-center'>Disciplina";
         if($ordined === "ASC")
             $body .= "          <a href='./index.php?ordined=ASC&ordines=".$ordines."&cerca=".trim($cerca, '%')."&cercas=".trim($cercas, '%')."'><i class='fas fa-sort-alpha-down'></i></a>
                                 <a href='./index.php?ordined=DESC&ordines=".$ordines."&cerca=".trim($cerca, '%')."&cercas=".trim($cercas, '%')."'>
@@ -91,8 +91,8 @@
                                 </a>
                                 <a href='./index.php?ordined=DESC&ordines=".$ordines."&cerca=".trim($cerca, '%')."&cercas=".trim($cercas, '%')."'><i class='fas fa-sort-alpha-up'></i></a>";
         $body .= "          </th>
-                            <th>Simbolo</th>
-                            <th>Azioni</th>
+                            <th class='text-center'>Simbolo</th>
+                            <th class='text-center'>Azioni</th>
                         </tr>
                     </thead>
                     <tr>

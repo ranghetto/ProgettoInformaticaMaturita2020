@@ -45,8 +45,8 @@
                 <table class='table table-striped'>
                     <thead class='thead-light'>
                         <tr>
-                            <th>Bandiera</th>
-                            <th class='vertical-align'>Nazione";
+                            <th class='text-center'>Bandiera</th>
+                            <th class='vertical-align text-center'>Nazione";
         if($ordine === "ASC")
             $body .= "          <a href='./index.php?ordine=ASC&cerca=".trim($cerca, '%')."'><i class='fas fa-sort-alpha-down'></i></a>
                                 <a href='./index.php?ordine=DESC&cerca=".trim($cerca, '%')."'>
@@ -62,7 +62,7 @@
                                 </a>
                                 <a href='./index.php?ordine=DESC&cerca=".trim($cerca, '%')."'><i class='fas fa-sort-alpha-up'></i></a>";
         $body .= "          </th>
-                            <th>Azioni</th>
+                            <th class='text-center'>Azioni</th>
                         </tr>
                     </thead>
                     <tr>
