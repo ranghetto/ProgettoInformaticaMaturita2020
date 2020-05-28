@@ -8,6 +8,4 @@ In particolare, la pagina di inserimento dei dati, relativi alle medaglie, dovr√
 
 Prevedere anche una pagina di riepilogo del medagliere, con i paesi ordinati per quantit√† di medaglie con gli stessi criteri delle Olimpiadi.
 
-## Specifiche
-- PHP: 5.3.2
-- MySQL: 5.1.46-community
+## [Documentazione](https://ranghetto.github.io/ProgettoInformaticaMaturita2020)
