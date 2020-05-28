@@ -8,6 +8,8 @@
         <?php include("../static/bootstrapCSS.html") ?>
     </head>
     <body>
+        <?php include("../navbar.php") ?>
+
         <div class="container-fluid">
 
             <?php
@@ -17,15 +19,15 @@
                 $conn = mysqli_connect($host, $user, $pwd, $schema)
                     or die("Impossibile connettersi al database.");
 
-                $idNazione = $_GET['nazione'];
-                $idDisciplina = $_GET['disciplina'];
-                $medaglia = $_GET['medaglia'];
-                $data = $_GET['data'];
+                $idNazione = $_POST['nazione'];
+                $idDisciplina = $_POST['disciplina'];
+                $medaglia = $_POST['medaglia'];
+                $data = $_POST['data'];
 
                 $conn = mysqli_connect($host, $user, $pwd, $schema)
                             or die("Impossibile connettersi al database.");
 
-                $sql = "INSERT INTO medaglie VALUES ('', '".$idNazione."', '".$idDisciplina."', '".$data."', '".$medaglia."')";
+                $sql = "INSERT INTO medaglie VALUES (DEFAULT, \"".$idNazione."\", \"".$idDisciplina."\", \"".$data."\", \"".$medaglia."\")";
 
                 $query = mysqli_query($conn, $sql);
 
