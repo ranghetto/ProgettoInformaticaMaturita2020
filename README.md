@@ -10,7 +10,7 @@ Prevedere anche una pagina di riepilogo del medagliere, con i paesi ordinati per
 
 ## Prima di iniziare
 
-### 1. Leggi la [documentazione](https://ranghetto.github.io/ProgettoInformaticaMaturita2020)
+### 1. Leggi la [documentazione](https://ranghetto.github.io/ProgettoInformaticaMaturita2020);
 
 ### 2. Il progetto ha bisogno di un file `PHP` all'interno della root principale chiamato `dati.php`:
 ```php
@@ -21,3 +21,4 @@ Prevedere anche una pagina di riepilogo del medagliere, con i paesi ordinati per
     $schema = "nome_del_database";
 ?>
 ```
+modificalo secondo le tue esigenze;
