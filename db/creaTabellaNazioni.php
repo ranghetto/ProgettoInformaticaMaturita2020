@@ -17,7 +17,7 @@
         $conn = mysqli_connect($host, $user, $pwd, $schema)
                     or die("Errore di connessione al database.");
 
-        $sql = "CREATE TABLE ".$tab".(
+        $sql = "CREATE TABLE ".$tab."(
                     idNazione smallint auto_increment not null primary key,
                     nome varchar(30) not null
                 )";
