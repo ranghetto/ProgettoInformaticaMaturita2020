@@ -8,6 +8,17 @@ In particolare, la pagina di inserimento dei dati, relativi alle medaglie, dovr√
 
 Prevedere anche una pagina di riepilogo del medagliere, con i paesi ordinati per quantit√† di medaglie con gli stessi criteri delle Olimpiadi.
 
-## Specifiche
-- PHP: 5.3.2
-- MySQL: 5.1.46-community
+## Prima di iniziare
+
+### 1. Leggi la [documentazione](https://ranghetto.github.io/ProgettoInformaticaMaturita2020);
+
+### 2. Il progetto ha bisogno di un file `PHP` all'interno della root principale chiamato `dati.php`:
+```php
+<?php
+    $host = "iltuohostname.it";
+    $user = "username";
+    $pwd = "password";
+    $schema = "nome_del_database";
+?>
+```
+modificalo secondo le tue esigenze;
