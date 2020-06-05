@@ -24,12 +24,13 @@
                 $query = mysqli_query($conn, $sql);
 
                 if($query)
-                    echo "  <div class='alert alert-success alert-dismissible fade show' role='alert'>
-                                <strong>Disciplina eliminata con successo!</strong> Torna <a href='./index.php' class='alert-link'>indietro</a> per visualizzarle tutte.
+                    echo "  <div class='col-md-4 offset-md-4 alert alert-success alert-dismissible fade show' role='alert'>
+                                <strong>Disciplina eliminata con successo!</strong><br>
+                                Torna <a href='./index.php' class='alert-link'>indietro</a> per visualizzarle tutte.
                             </div>";
                 else
-                    echo "  <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                                <strong>Errore nell'eliminazione della disciplina!</strong>
+                    echo "  <div class='col-md-4 offset-md-4 alert alert-danger alert-dismissible fade show' role='alert'>
+                                <strong>Errore nell'eliminazione della disciplina!</strong><br>
                                 Torna <a href='./index.php' class='alert-link'>indietro</a>
                                 oppure <a href='./elimina.php?idDisciplina=".$id."' class='alert-link'>riprova</a>.
                             </div>";

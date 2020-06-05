@@ -32,8 +32,8 @@
                 $query = mysqli_query($conn, $sql);
 
                 if (mysqli_num_rows($query) === 0)
-                    echo "  <div class='alert alert-alert alert-dismissible fade show' role='alert'>
-                                <strong>Nessuna disciplina trovata con l'id ".$id."!</strong>
+                    echo "  <div class='col-md-4 offset-md-4 alert alert-alert alert-dismissible fade show' role='alert'>
+                                <strong>Nessuna disciplina trovata con l'id ".$id."!</strong><br>
                                 Torna <a href='../' class='alert-link'>indietro</a>.
                             </div>";
                 else{

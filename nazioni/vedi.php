@@ -23,7 +23,7 @@
 
         if($query){
             if (mysqli_num_rows($query) === 0){
-                $body .= "  <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                $body .= "  <div class='col-md-4 offset-md-4 alert alert-warning alert-dismissible fade show' role='alert'>
                                 <strong>Nessuna nazione trovata!</strong>
                                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                                     <span aria-hidden='true'>&times;</span>
@@ -89,7 +89,7 @@
             $body .= "</table></div></div>";
 
         } else {
-            $body .= "  <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+            $body .= "  <div class='col-md-4 offset-md-4 alert alert-warning alert-dismissible fade show' role='alert'>
                             <strong>Errore nella query: ".mysqli_error($conn)."</strong>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                                 <span aria-hidden='true'>&times;</span>
@@ -97,8 +97,9 @@
                         </div>";
         }
     } else
-        $body .= "  <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <strong>Non è stato possibile stabilire una connessione al database.</strong>
+        $body .= "  <div class='col-md-4 offset-md-4 alert alert-danger alert-dismissible fade show' role='alert'>
+                            <strong>Non è stato possibile stabilire una connessione al database.</strong><br>
+                            Clicca <a href='../db/inizializzazione.php' class='alert-link'>qui</a> per inizializzarlo.
                         </div>";
     
     echo $body;

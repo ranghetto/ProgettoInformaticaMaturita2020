@@ -28,7 +28,7 @@
 
                     if( file_exists($_FILES['icona']['tmp_name']) && is_uploaded_file($_FILES['icona']['tmp_name'])){
 
-                        $file = caricaFile($_POST["submit"], $_FILES["icona"]);
+                        $file = caricaFile($_POST["submit"], $_FILES["icona"], "discipline");
                         if($file["caricamentoRiuscito"]){
                             $sql = "UPDATE discipline SET disciplina = \"".$nome."\",, idSport = \"".$sport."\" icona = \"".$file["nomeIcona"]."\" WHERE idDisciplina = ".$id;
                             //elimino la vecchia immagine se il caricamento di quella nuova è avvenuto con successo
@@ -41,18 +41,19 @@
                     $query = mysqli_query($conn, $sql);
 
                     if($query)
-                        echo "  <div class='alert alert-success alert-dismissible fade show' role='alert'>
-                                    <strong>Disciplina modificata con successo!</strong> Torna <a href='./index.php' class='alert-link'>indietro</a> per visualizzarle tutte.
+                        echo "  <div class='col-md-4 offset-md-4 alert alert-success alert-dismissible fade show' role='alert'>
+                                    <strong>Disciplina modificata con successo!</strong><br>
+                                    Torna <a href='./index.php' class='alert-link'>indietro</a> per visualizzarle tutte.
                                 </div>";
                     else
-                        echo "  <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                                    <strong>Errore nella modifica della disciplina!</strong>
+                        echo "  <div class='col-md-4 offset-md-4 alert alert-danger alert-dismissible fade show' role='alert'>
+                                    <strong>Errore nella modifica della disciplina!</strong><br>
                                     Torna <a href='./index.php' class='alert-link'>indietro</a>
                                     oppure <a href='./modifica.php?idDisciplina=".$id."' class='alert-link'>riprova</a>.
                                 </div>";
                 } else
-                    echo "  <div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                                <strong>Errore nella modifica della disciplina! I dati non possono essere vuoti.</strong>
+                    echo "  <div class='col-md-4 offset-md-4 alert alert-warning alert-dismissible fade show' role='alert'>
+                                <strong>Errore nella modifica della disciplina! I dati non possono essere vuoti.</strong><br>
                                 Torna <a href='./index.php' class='alert-link'>indietro</a>
                                 oppure <a href='./modifica.php?idDisciplina=".$id."' class='alert-link'>riprova</a>.
                             </div>";

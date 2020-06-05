@@ -8,19 +8,6 @@
             <li class="nav-item">
                 <?php echo "<a class=\"nav-link\" href=\"/\">Home</a>" ?>
             </li>
-            
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Operazioni DB
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <?php echo "<a class=\"dropdown-item\" href=\"".getURL("/db/creaDatabase.php")."\">Crea database</a>" ?>
-                    <?php echo "<a class=\"dropdown-item\" href=\"".getURL("/db/creaTabellaNazioni.php")."\">Crea tabella \"nazioni\"</a>" ?>
-                    <?php echo "<a class=\"dropdown-item\" href=\"".getURL("/db/creaTabellaSports.php")."\">Crea tabella \"sports\"</a>" ?>
-                    <?php echo "<a class=\"dropdown-item\" href=\"".getURL("/db/creaTabellaDiscipline.php")."\">Crea tabella \"discipline\"</a>" ?>
-                    <?php echo "<a class=\"dropdown-item\" href=\"".getURL("/db/creaTabellaMedaglie.php")."\">Crea tabella \"medaglie\"</a>" ?>
-                </div>
-            </li>
 
             <li class="nav-item">
                 <?php echo "<a class=\"nav-link\" href=\"".getURL("/nazioni")."\">Nazioni</a>" ?>
