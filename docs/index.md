@@ -46,17 +46,8 @@ Provare il sito in un ambiente locale è possibile seguendo questi semplici pass
 
     ![Errore di connessione al database](./images/error-db-connection.png)
 
-    Non vi preoccupate, è normale dal momento che non abbiamo ancora creato il nostro database.
-5. Dal menù in alto selezionate la voce `Operazioni DB`
-
-    ![Operazioni DB](./images/operazioni-db.png)
-
-    Vi apparirà questa "tendina":
-
-    ![Operazioni DB 2](./images/operazioni-db-2.png)
-
-    Ora partendo dall'alto verso il basso cliccate su tutte le voci presenti.
-6. Se tutti i passaggi andranno a buon fine (indicati da un messaggio a sfondo verde al termine dell'operazione), il vostro database e le tabelle saranno pronte all'utilizzo.
+    Non vi preoccupate, è normale dal momento che non abbiamo ancora creato il nostro database;
+5. Seguite le indicazioni per inizializzarlo ed il sito sarà pronto per operare;
 
 # 2. Il progetto
 Creare un sito web per la gestione di un medagliere delle olimpiadi.
