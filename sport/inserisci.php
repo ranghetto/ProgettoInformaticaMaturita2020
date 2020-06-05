@@ -27,20 +27,19 @@
                     $query = mysqli_query($conn, $sql);
         
                     if($query)
-                        echo "  <div class='alert alert-success alert-dismissible fade show' role='alert'>
-                                    <strong>Sport inserito correttamente!</strong> Torna <a href='./index.php' class='alert-link'>indietro</a> per visualizzarli tutti.
+                        echo "  <div class='col-md-4 offset-md-4 alert alert-success alert-dismissible fade show' role='alert'>
+                                    <strong>Sport inserito correttamente!</strong><br>
+                                    Torna <a href='./index.php' class='alert-link'>indietro</a> per visualizzarli tutti.
                                 </div>";
                     else 
-                        echo "  <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                                    <strong>Errore nell'inserimento dello sport!</strong>
-                                    Torna <a href='./index.php' class='alert-link'>indietro</a>
-                                    oppure <a href='./inserisci.php' class='alert-link'>riprova</a>.
+                        echo "  <div class='col-md-4 offset-md-4 alert alert-danger alert-dismissible fade show' role='alert'>
+                                    <strong>Errore nell'inserimento dello sport!</strong><br>
+                                    Torna <a href='./index.php' class='alert-link'>indietro</a>.
                                 </div>";
                 } else
-                    echo "  <div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                                <strong>Errore nell'inserimento dello sport! Il nome non può essere vuoto.</strong>
-                                Torna <a href='./index.php' class='alert-link'>indietro</a>
-                                oppure <a href='./inserisci.php' class='alert-link'>riprova</a>.
+                    echo "  <div class='col-md-4 offset-md-4 alert alert-warning alert-dismissible fade show' role='alert'>
+                                <strong>Errore nell'inserimento dello sport! Il nome non può essere vuoto.</strong><br>
+                                Torna <a href='./index.php' class='alert-link'>indietro</a>.
                             </div>";
             ?>
         </div>

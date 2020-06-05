@@ -7,13 +7,11 @@
     if( isset($_GET["ordine"]) && $_GET["ordine"]==="DESC" )
         $ordine = "DESC";
 
-    $cerca = "%%";
-    if( isset($_GET["cerca"]) && $_GET["cerca"]!=="" )
-        $cerca = "%".$_GET["cerca"]."%";
-
-    $sql = "SELECT * FROM nazioni
-            WHERE nazione LIKE \"".$cerca."\"
-            ORDER BY nazione ".$ordine;
+    $sql = "SELECT idMedaglia, n.icona, nazione, sport, disciplina, data, medaglia FROM medaglie AS m
+            INNER JOIN nazioni AS n ON m.idNazione = n.idNazione
+            INNER JOIN discipline AS d ON m.idDisciplina = d.idDisciplina
+            INNER JOIN sports AS s ON d.idSport = s.idSport
+            ORDER BY data ".$ordine;
 
     $body = "<div class='container-fluid'>";
     
@@ -24,7 +22,7 @@
         if($query){
             if (mysqli_num_rows($query) === 0){
                 $body .= "  <div class='col-md-4 offset-md-4 alert alert-warning alert-dismissible fade show' role='alert'>
-                                <strong>Nessuna nazione trovata!</strong>
+                                <strong>Nessuna medaglia trovata!</strong>
                                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                                     <span aria-hidden='true'>&times;</span>
                                 </button>
@@ -32,75 +30,68 @@
             }
 
             $body .= "
-                <div class='row justify-content-center' style='padding-top: 7px;'>
-                    <form class='form-inline' action='./index.php'>
-                        <div class='form-group mx-2 mb-2'>
-                            <input type='text' name='cerca' class='form-control' placeholder='Cerca Nazione' value='".trim($cerca, '%')."'>
-                        </div>
-                        <button type='submit' class='btn btn-outline-primary mb-2'><i class='fas fa-search'></i></button>&nbsp;
-                        <a href='./index.php?ordine=".$ordine."' class='btn btn-outline-danger mb-2'><i class='fas fa-times'></i></a>
-                    </form>
-                </div>
                 <div class='row'>
                     <table class='table table-striped'>
                         <thead class='thead-light'>
                             <tr>
-                                <th class='text-center'>Bandiera</th>
-                                <th class='vertical-align text-center'>Nazione";
-            if($ordine === "ASC")
-                $body .= "          <a href='./index.php?ordine=ASC&cerca=".trim($cerca, '%')."'><i class='fas fa-sort-alpha-down'></i></a>
-                                    <a href='./index.php?ordine=DESC&cerca=".trim($cerca, '%')."'>
-                                        <span style='color: Grey;'>
-                                            <i class='fas fa-sort-alpha-up'></i>
-                                        </span>
-                                    </a>";
-            else
-                $body .= "          <a href='./index.php?ordine=ASC&cerca=".trim($cerca, '%')."'>
-                                        <span style='color: Grey;'>
-                                            <i class='fas fa-sort-alpha-down'></i>
-                                        </span>
-                                    </a>
-                                    <a href='./index.php?ordine=DESC&cerca=".trim($cerca, '%')."'><i class='fas fa-sort-alpha-up'></i></a>";
-            $body .= "          </th>
+                                <th class='vertical-align text-center'>Bandiera</th>
+                                <th class='text-center'>Nazione</th>
+                                <th class='text-center'>Sport - Disciplina</th>
+                                <th class='text-center'>Data</th>
+                                <th class='text-center'>Medaglia</th>
                                 <th class='text-center'>Azioni</th>
                             </tr>
                         </thead>
                         <tr>
                             <td></td>
                             <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                             <td class='align-middle'>
                                 <button type='button' class='btn btn-outline-success' data-toggle='modal' data-target='#inserimento'>
-                                    Nuova Nazione
+                                    Nuova Medaglia
                                 </button>
                             </td>
                         </tr>";
+            
+
             
             while ($row = mysqli_fetch_array($query)) {
                 $body .= "  <tr>
                                 <td class='align-middle'><image src='../static/bandiere/".$row['icona']."'></td>
                                 <td class='align-middle'>".$row['nazione']."</td>
-                                <td class='align-middle'>
-                                    <a class='btn btn-outline-primary' href='./modifica.php?idNazione=".$row["idNazione"]."'>Modifica</a>
-                                    <a class='btn btn-outline-danger' href='./elimina.php?idNazione=".$row["idNazione"]."'>Elimina</a>
+                                <td class='align-middle'>".$row['sport']." - ".$row['disciplina']."</td>
+                                <td class='align-middle'>".$row['data']."</td>";
+
+                if($row['medaglia'] == 1)
+                    $body .= "  <td class='align-middle'>Oro <span style='color:#ffd700;'><i class='fas fa-medal'></i></span></td>";
+                if($row['medaglia'] == 2)
+                    $body .= "  <td class='align-middle'>Argento <span style='color:#c0c0c0;'><i class='fas fa-medal'></i></span></td>";
+                if($row['medaglia'] == 3)
+                    $body .= "  <td class='align-middle'>Bronzo <span style='color:#b08d57;'><i class='fas fa-medal'></i></span></td>";
+
+                $body .= "      <td class='align-middle'>
+                                    <a class='btn btn-outline-primary' href='./modifica.php?idMedaglia=".$row["idMedaglia"]."'>Modifica</a>
+                                    <a class='btn btn-outline-danger' href='./elimina.php?idMedaglia=".$row["idMedaglia"]."'>Elimina</a>
                                 </td>
                             </tr>";
             }
 
-            $body .= "</table></div></div>";
+            $body .= "</table></div>";
 
-        } else {
+        } else
             $body .= "  <div class='col-md-4 offset-md-4 alert alert-warning alert-dismissible fade show' role='alert'>
                             <strong>Errore nella query: ".mysqli_error($conn)."</strong>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                                 <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
-        }
     } else
         $body .= "  <div class='col-md-4 offset-md-4 alert alert-danger alert-dismissible fade show' role='alert'>
                             <strong>Non è stato possibile stabilire una connessione al database.</strong><br>
                             Clicca <a href='../db/inizializzazione.php' class='alert-link'>qui</a> per inizializzarlo.
                         </div>";
-    
-    echo $body;
+
+    echo $body.="</div>";
 ?>

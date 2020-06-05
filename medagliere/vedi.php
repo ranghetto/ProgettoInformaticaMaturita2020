@@ -26,16 +26,13 @@
         $query = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($query) === 0){
-            $body .= "  <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <strong>Nessuna disciplina nel database!</strong>
+            $body .= "  <div class='col-md-4 offset-md-4 alert alert-warning alert-dismissible fade show' role='alert'>
+                            <strong>Nessuna corrispondenza nel database!</strong>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                                 <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
-            $body .= "  <div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <strong>Inizia inserendo una nuova disciplina!</strong>
-                        </div>";
-        }else{
+        }
             $body .= "<div class='row justify-content-center' style='padding-top: 7px;'>
                             <form class='form-inline' action='./index.php'>
                                 <div class='form-group mx-2 mb-2'>
@@ -52,27 +49,12 @@
                                 <tr>
                                     <th class='text-center'>Bandiera</th>
                                     <th class='text-center'>Nazione</th>
-                                    <th class='text-center'>Oro</th>
-                                    <th class='text-center'>Argento</th>
-                                    <th class='text-center'>Bronzo</th>
+                                    <th class='text-center'>Oro <span style='color:#ffd700;'><i class='fas fa-medal'></i></span></th>
+                                    <th class='text-center'>Argento <span style='color:#c0c0c0;'><i class='fas fa-medal'></i></span></th>
+                                    <th class='text-center'>Bronzo <span style='color:#b08d57;'><i class='fas fa-medal'></i></span></th>
                                     <th class='text-center'>Totale</th>
-                                    <th class='text-center'>Azioni</th>
                                 </tr>
-                            </thead>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td class='align-middle'>
-                                    <button type='button' class='btn btn-outline-success' data-toggle='modal' data-target='#inserimento'>
-                                        Nuova Medaglia
-                                    </button>
-                                </td>
-                            </tr>";
-
+                            </thead>";
             while ($row = mysqli_fetch_array($query))
                 $body .= "  <tr>
                                 <td class='align-middle'><image src=\"./static/bandiere/".$row['icona']."\"></td>
@@ -81,15 +63,15 @@
                                 <td class='align-middle'>".$row['argento']."</td>
                                 <td class='align-middle'>".$row['bronzo']."</td>
                                 <td class='align-middle'>".$row['totale']."</td>
-                                <td></td>
                             </tr>";
 
-            $body .= "</table></div>";
+            $body .= "  </table>
+                    </div>";
 
-        }
     }else{
-        $body .= "  <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        <strong>Non è stato possibile stabilire una connessione al database.</strong>
+        $body .= "  <div class='col-md-4 offset-md-4 alert alert-danger alert-dismissible fade show' role='alert'>
+                        <strong>Non è stato possibile stabilire una connessione al database.</strong><br>
+                        Clicca <a href='../db/inizializzazione.php' class='alert-link'>qui</a> per inizializzarlo.
                     </div>";
     }
 

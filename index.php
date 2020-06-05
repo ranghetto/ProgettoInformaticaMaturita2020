@@ -12,8 +12,6 @@
 
         <?php include("./medagliere/vedi.php") ?>
 
-        <?php include("./medagliere/modal.php") ?>
-
         <?php include("./static/bootstrapJS.html") ?>
     </body>
 </html>
