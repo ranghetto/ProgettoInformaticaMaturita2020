@@ -32,6 +32,7 @@
                                 <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
+        }
             $body .= "<div class='row justify-content-center' style='padding-top: 7px;'>
                             <form class='form-inline' action='./index.php'>
                                 <div class='form-group mx-2 mb-2'>
@@ -68,7 +69,6 @@
                                     </button>
                                 </td>
                             </tr>";
-        }else{
             while ($row = mysqli_fetch_array($query))
                 $body .= "  <tr>
                                 <td class='align-middle'><image src=\"./static/bandiere/".$row['icona']."\"></td>
@@ -82,7 +82,6 @@
 
             $body .= "</table></div>";
 
-        }
     }else{
         $body .= "  <div class='col-md-4 offset-md-4 alert alert-danger alert-dismissible fade show' role='alert'>
                         <strong>Non è stato possibile stabilire una connessione al database.</strong><br>
