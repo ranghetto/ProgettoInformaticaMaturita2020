@@ -35,7 +35,7 @@
                                     </div>';
 
                         if(mysqli_num_rows($query) !== 0 && mysqli_num_rows($query1) !== 0){
-                            $body.='<form class="col-md-12" action="./medagliere/inserisci.php" method="POST" enctype="multipart/form-data">
+                            $body.='<form class="col-md-12" action="./inserisci.php" method="POST" enctype="multipart/form-data">
                     
                                         <div class="form-group">
                                             <label for="nazione">Nazione </label>

@@ -10,6 +10,10 @@
             </li>
 
             <li class="nav-item">
+                <?php echo "<a class=\"nav-link\" href=\"".getURL("/medaglie")."\">Medaglie</a>" ?>
+            </li>
+
+            <li class="nav-item">
                 <?php echo "<a class=\"nav-link\" href=\"".getURL("/nazioni")."\">Nazioni</a>" ?>
             </li>
 

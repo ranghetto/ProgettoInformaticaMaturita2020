@@ -37,17 +37,17 @@
                     if($query)
                         echo "  <div class='col-md-4 offset-md-4 alert alert-success alert-dismissible fade show' role='alert'>
                                     <strong>Medaglia inserita correttamente!</strong><br>
-                                    Torna alla <a href='../' class='alert-link'>home</a> per visualizzarle tutte.
+                                    Torna alla <a href='./index.php' class='alert-link'>home</a> per visualizzarle tutte.
                                 </div>";
                     else
                         echo "  <div class='col-md-4 offset-md-4 alert alert-danger alert-dismissible fade show' role='alert'>
                                     <strong>Errore nell'inserimento della medaglia!</strong><br>
-                                    Torna alla <a href='../' class='alert-link'>home</a>
+                                    Torna alla <a href='./index.php' class='alert-link'>home</a>
                                 </div>";
                 }else
                     echo "  <div class='col-md-4 offset-md-4 alert alert-warning alert-dismissible fade show' role='alert'>
                                 <strong>Errore nell'inserimento della medaglia! Il dati non possono essere vuoti.</strong><br>
-                                Torna <a href='../index.php' class='alert-link'>indietro</a>.
+                                Torna <a href='./index.php' class='alert-link'>indietro</a>.
                             </div>";
 
             ?>

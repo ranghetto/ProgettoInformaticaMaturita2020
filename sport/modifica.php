@@ -26,9 +26,9 @@
                 $query = mysqli_query($conn, $sql);
 
                 if (mysqli_num_rows($query) === 0)
-                    echo "  <div class='col-md-4 offset-md-4 alert alert-alert alert-dismissible fade show' role='alert'>
+                    echo "  <div class='col-md-4 offset-md-4 alert alert-warning alert-dismissible fade show' role='alert'>
                                 <strong>Nessuno sport trovato con l'id ".$id."!</strong><br>
-                                Torna <a href='../' class='alert-link'>indietro</a>.
+                                Torna <a href='./index.php' class='alert-link'>indietro</a>.
                             </div>";
                 else{
                     $row = mysqli_fetch_array($query);
