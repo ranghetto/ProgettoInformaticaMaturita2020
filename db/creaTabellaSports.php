@@ -1,4 +1,4 @@
-<?php $tab = "nazioni" ?>
+<?php $tab = "sports" ?>
 <?php
     require_once "../funzioni.php";
 ?>
@@ -18,9 +18,8 @@
                     or die("Errore di connessione al database.");
 
         $sql = "CREATE TABLE ".$tab."(
-                    idNazione smallint auto_increment not null primary key,
-                    nazione varchar(30) not null,
-                    icona varchar(50)
+                    idSport smallint auto_increment not null primary key,
+                    sport varchar(30) not null
                 )";
 
         $query = mysqli_query($conn, $sql);

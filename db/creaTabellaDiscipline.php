@@ -19,7 +19,8 @@
 
         $sql = "CREATE TABLE ".$tab."(
                     idDisciplina smallint auto_increment not null primary key,
-                    nome varchar(30) not null
+                    disciplina varchar(30) not null,
+                    icona varchar(50)
                 )";
 
         $query = mysqli_query($conn, $sql);

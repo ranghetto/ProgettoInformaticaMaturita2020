@@ -21,7 +21,7 @@
                         idMedaglia smallint auto_increment not null primary key,
                         idNazione smallint not null,
                         idDisciplina smallint not null,
-                        dataM date not null,
+                        data date not null,
                         medaglia tinyint not null,
                         foreign key (idNazione) references nazioni(idNazione),
                         foreign key (idDisciplina) references discipline(idDisciplina)
