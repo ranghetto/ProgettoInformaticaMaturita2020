@@ -15,7 +15,7 @@
 
                 include("../dati.php");
                 
-                if( isset($_POST['disciplina']) && isset($_POST['sport']) ){
+                if( isset($_POST['disciplina']) && isset($_POST['sport']) && $_POST['disciplina']!=""){
 
                     $nome = $_POST['disciplina'];
                     $sport = $_POST['sport'];
