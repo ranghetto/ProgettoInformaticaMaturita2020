@@ -40,7 +40,7 @@
         
                     if($query)
                         echo "  <div class='col-md-4 offset-md-4 alert alert-success alert-dismissible fade show' role='alert'>
-                                    <strong>Disciplina inserita correttamente!</strong<br>
+                                    <strong>Disciplina inserita correttamente!</strong><br>
                                     Torna <a href='./index.php' class='alert-link'>indietro</a> per visualizzarle tutte.
                                 </div>";
                     else 

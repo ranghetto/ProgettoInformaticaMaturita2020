@@ -9,57 +9,78 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="col-md-12" action="./medagliere/inserisci.php" method="POST" enctype="multipart/form-data">
+                <?php
+                    $body = "";
                     
-                    <div class="form-group">
-                        <label for="nazione">Nazione </label>
-                        <select class="form-control" id="nazione" name="nazione">
-                            <?php
-                                $sql = "SELECT * FROM nazioni
-                                            ORDER BY nazione";
+                    $sql = "SELECT * FROM nazioni
+                                ORDER BY nazione";
 
-                                $query = mysqli_query($conn, $sql);
+                    $sql1 = "SELECT idDisciplina, sport, disciplina FROM discipline AS d 
+                                INNER JOIN sports AS s on d.idSport = s.idSport
+                            ORDER BY sport, disciplina";
 
-                                if(mysqli_num_rows($query) !== 0)
-                                    while ($row = mysqli_fetch_array($query))
-                                        echo "<option value=".$row['idNazione'].">".$row['nazione']."</option>";
-                            ?>
-                        </select>
-                    </div>
+
+                    $query = mysqli_query($conn, $sql);
+                    $query1 = mysqli_query($conn, $sql1);
+
+                    if($query && $query1){
+                        if(mysqli_num_rows($query) === 0)
+                            $body.='<div class="alert alert-danger" role="alert">
+                                        Prima di inserire una medaglia devi <a href="../nazioni/index.php" class="alert-link">inserire una nazione</a>!
+                                    </div>';
+
+                        if(mysqli_num_rows($query1) === 0)
+                            $body.='<div class="alert alert-danger" role="alert">
+                                        Prima di inserire una medaglia devi <a href="../discipline/index.php" class="alert-link">inserire una disciplina</a>!
+                                    </div>';
+
+                        if(mysqli_num_rows($query) !== 0 && mysqli_num_rows($query1) !== 0){
+                            $body.='<form class="col-md-12" action="./medagliere/inserisci.php" method="POST" enctype="multipart/form-data">
                     
-                    <div class="form-group">
-                        <label for="disciplina">Disciplina </label>
-                        <select class="form-control" id="disciplina" name="disciplina">
-                            <?php
-                            $sql = "SELECT * FROM discipline
-                                        ORDER BY disciplina";
+                                        <div class="form-group">
+                                            <label for="nazione">Nazione </label>
+                                            <select class="form-control" id="nazione" name="nazione">';
 
-                            $query = mysqli_query($conn, $sql);
+                            while ($row = mysqli_fetch_array($query))
+                                $body.="        <option value=".$row['idNazione'].">".$row['nazione']."</option>";
+                                                
+                            $body.='        </select>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="disciplina">Sport - Disciplina </label>
+                                            <select class="form-control" id="disciplina" name="disciplina">';
+                            while ($row1 = mysqli_fetch_array($query1))
+                                $body.="        <option value=".$row1['idDisciplina'].">".$row1['sport']." - ".$row1['disciplina']."</option>";
 
-                            if(mysqli_num_rows($query) !== 0)
-                                while ($row = mysqli_fetch_array($query))
-                                    echo "<option value=".$row['idDisciplina'].">".$row['disciplina']."</option>";
-                            ?>
-                        </select>
-                    </div>
+                            $body.='        </select>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="data">Data </label>
+                                            <input type="date" class="form-control" id="data" name="data">
+                                        </div>
                     
-                    <div class="form-group">
-                        <label for="data">Data </label>
-                        <input type="date" class="form-control" id="data" name="data">
-                    </div>
+                                        <div class="form-group">
+                                            <label for="medaglia">Medaglia </label>
+                                            <select class="form-control" id="medaglia" name="medaglia">
+                                                <option value="1">Oro</option>
+                                                <option value="2">Argento</option>
+                                                <option value="3">Bronzo</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <input class="btn btn-success" type="submit"
+                                                name="submit" id="submit" value="Inserisci">
+                                    </form>';
+                        }
+                    }else
+                        $body.='<div class="alert alert-danger" role="alert">
+                                    Errore nel recupero dei dati.
+                                </div>';
 
-                    <div class="form-group">
-                        <label for="medaglia">Medaglia </label>
-                        <select class="form-control" id="medaglia" name="medaglia">
-                            <option value="1">Oro</option>
-                            <option value="2">Argento</option>
-                            <option value="3">Bronzo</option>
-                        </select>
-                    </div>
-                    
-                    <input class="btn btn-success" type="submit"
-                            name="submit" id="submit" value="Inserisci">
-                </form>
+                    echo $body;
+                ?>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
