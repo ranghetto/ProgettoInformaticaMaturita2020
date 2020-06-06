@@ -1,17 +1,13 @@
-on: push
 name: Deploy Altervista
+on: push
 jobs:
-  FTP-Deploy-Action:
-    name: FTP-Deploy-Action
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2.1.0
+    - uses: actions/checkout@v2
+    - name: Upload ftp
+      uses: sebastianpopp/ftp-action@releases/v2
       with:
-        fetch-depth: 2
-    - name: FTP-Deploy-Action
-      uses: SamKirkland/FTP-Deploy-Action@3.1.1
-      with:
-        ftp-server: ${{ secrets.FTP_HOST }}
-        ftp-username: ${{ secrets.FTP_USER }}
-        ftp-password: ${{ secrets.FTP_PWD }}
-        git-ftp-args: --insecure
+        host: ${{ secrets.FTP_HOST }}
+        user: ${{ secrets.FTP_USER }}
