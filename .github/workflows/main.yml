@@ -11,3 +11,4 @@ jobs:
       with:
         host: ${{ secrets.FTP_HOST }}
         user: ${{ secrets.FTP_USER }}
+        password: ${{ secrets.FTP_PWD }}
