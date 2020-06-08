@@ -5,19 +5,19 @@ Creare un sito web per la gestione di un medagliere delle olimpiadi.
 
 L'ambito del progetto potrebbe essere quello di un'azienda che gestisce le statistiche dei vincitori delle olimpiadi (solamente chi rientra nel podio) e magari di fornire, attraverso delle `API`, i dati a terzi parti.
 
-## 1.1 Schema Entity Relationships (E/R)
+## 1.1. Schema Entity Relationships (E/R)
 
 ![Schema Entity Relationships](./images/er.png)
 
-La relazione che si crea tra `sports e discipline è di 1 a N` ( a uno sport corrispondono una o più discipline, ma non viceversa ).
+La relazione che si crea tra `sports e discipline è di 1 a N` ( a uno sport corrispondono una o più discipline, ma ad un disciplina corrisponde uno ed uno solo sport ).
 
 La relazione che si crea tra `nazioni e discipline è N a N` ( ad una nazione corrispondono una o più discipline e viceversa )
 
-## 1.2 Schema Logico
+## 1.2. Schema Logico
 
 ![Schema Logico](./images/logico.png)
 
-## 1.3 Vincoli
+## 1.3. Vincoli
 Dallo schema logico possiamo vedere alcuni `vincoli di integrità referenziale` ( FK ) quali:
 * Nazioni -> Medaglie
 * Discipline -> Medaglie
@@ -29,7 +29,7 @@ Inoltre vi si trova un `vincolo di dominio` nel campo `medaglia` della tabella `
 
 L'univocità di ogni record è possibile grazie alle `chiavi primarie` presenti in ogni tabella ( PK ). Non è presente il controllo sui valori immessi durante l'inserimento e la modifica, per tanto bisogna fare attenzione durante queste due fasi.
 
-## 1.4 I Linguaggi
+## 1.4. I Linguaggi
 Ho scelto `PHP` (Personal Home Page inizialmente, poi modificato in Hypertext Preprocessor), un linguaggio di scripting lato server interpretato, in quanto molto semplice ed adatto per lo sviluppo dell'intero progetto. 
 Avendo un alto grado di portabilità infatti, esso è perfetto per quasi qualsiasi piattaforma, sia quando si parla di sistemi operativi, sia quando si parla di web server.
 
@@ -37,7 +37,17 @@ Inoltre sono presenti altri linguaggi come `CSS` (Cascading Style Sheets) e `Jav
 
 Per interfacciarmi con il database ho utilizzato il linguaggio `SQL` (Structured Query Language), inserendo le istruzioni in apposite funzioni offerte da PHP.
 
-## 1.5 Base di dati in linguaggio SQL
+## 1.5. DBMS (Data Base Management System)
+Per gestire la persistenza dei dati è stato utilizzato un `DBMS`, ossia un programma applicativo che si interpone tra l'applicazione e i file dove sono memorizzati i dati ( che si interfaccia con il file system ).
+
+I vantaggi sono molteplici: 
+* Eliminazione delle ridondanze ( dato che deriva dall'elaborazione di altri )
+* Eliminazione delle inconsistenze ( due valori che rappresentano la stessa informazione, assumono valori diversi )
+* Integrità dei dati ( vedi paragrafo `Vincoli` )
+
+Il DBMS in questione è `MySQL`, o meglio un `RDBMS`, ossia un database relazionale, che ha come principio base quello di essere intuitivo e diretto nella rappresentazione dei dati nelle tabelle, rendendo facile stabilire anche le relazioni.
+
+## 1.6. Base di dati in linguaggio SQL
 ```sql
 -- Creazione tabella `sports`
 CREATE TABLE sports(
@@ -72,40 +82,31 @@ CREATE TABLE medaglie(
     foreign key (idDisciplina) references discipline(idDisciplina)
 )
 ```
-Nello script di inizializzazione del database, all'interno del codice, è stata inserita, successivamente ad ogni istruzione `CREATE TABLE`, l'istruzione `IF NOT EXISTS` per evitare errori spiacevoli.
+Nello script di inizializzazione del database, all'interno del codice, è stata inserita, successivamente ad ogni istruzione `CREATE TABLE`, l'istruzione `IF NOT EXISTS` per evitare la cancellazione, per errore, di tutti i dati, con conseguente (possibile) inconsistenza dei dati.
 
 # 2. Requisiti
 Lo sviluppo dell'applicazione è stato effettuato attraverso il web server [XAMPP](https://www.apachefriends.org/it/index.html), versione `7.4.5`, che comprende al suo interno:
 * MariaDB `10.4.11` (fork di `MySQL` versione `5.6`);
 * PHP `7.4.5`;
 
-Il deploy dell'intero sito invece, è stato fatto su [Altervista](https://it.altervista.org), all'indirizzo  [rangomatteo.altervista.org](rangomatteo.altervista.org), server che contiene:
+Il deploy dell'intero sito invece, è stato fatto su [Altervista](https://it.altervista.org), all'indirizzo  [rangomatteo.altervista.org](https://rangomatteo.altervista.org), server che contiene:
 * MySQL `5.6`;
 * PHP `7.3`;
 
 Entrambe le versioni, sia per quanto riguarda `PHP`, sia per quanto riguarda `MySQL`/`MariaDB`, sono compatibili tra loro quindi, non c'è stato bisogno di effettuare modifiche nel passaggio dallo sviluppo al deploy. Il motore utilizzato è `InnoDB`, scelto per la caratteristica fondamentale di permettere la creazione delle `foreign keys`, che conferiscono la possibilità di creare una relazione logica tra due (o più) tabelle, in modo da rendere consistenti i dati (vedi sezione `vincoli`).
 
-Il caricamento dei file nel server di Altrvista è sempre stato effettuato attraverso il protocollo `FTP` con il programma [FileZilla](https://filezilla-project.org/).
+Il caricamento dei file nel server di Altrvista è stato effettuato attraverso il protocollo `FTP` con il programma [FileZilla](https://filezilla-project.org/) per poi renderlo automatico grazie a Github (Github Actions).
 
-## 2.1 Test in locale
-Provare il sito in un ambiente locale è possibile seguendo questi semplici passaggi:
-1. Scaricare tutti i file e copiarli nella directory dedicata nel proprio web server;
-2. Creare nella root principale un file chiamato `dati.php` e incollare al suo interno il seguente codice:
-    ```php
-    <?php
-        $host = "iltuohostname.it";
-        $user = "username";
-        $pwd = "password";
-        $schema = "nome_del_database";
-    ?>
-    ```
-    Modificare quindi **SOLO IL VALORE** delle variabili secondo le proprie esigenze.
+# 3. Schema della realtà di riferimento
+Si pensa di creare una rete interna per l'azienda, che offrirà i servizi agli utenti attraverso una rete di elaboratori. Di seguito la rappresentazione logica:
 
-    **ATTENZIONE**: inserisci il nome del database nella variabile `$schema` anche se non esiste ancora, vedremo nei prossimi punti come crearlo;
-3. A questo punto avviare il web server ed accedere al sito tramite browser;
-4. In caso di successo, dovreste trovarvi ad una pagina il cui messaggio è il seguente:
+![Rete](./images/rete.png)
 
-    ![Errore di connessione al database](./images/error-db-connection.png)
+# 3.1. Servizi verso l'esterno
+Come già citato in precedenza, si vuole offrire agli utenti una serie di servizi attraverso un web server, che sarà posto all'interno di una `DMZ` (DeMilitarized Zone), questo per rendere sicura la rete aziendale interna.
+In pratica si crea la cosidetta `zona cuscinetto`, una zona con traffico strettamente limitato e controllato, gestita attarverso il firewall più esterno.
+Il database sarà posto invece all'interno della rete aziendale, questo perché solamente il web server dovrà accedervi direttamente, e lo farà tramite determinate regole dettate dal firewall interno.
 
-    Non vi preoccupate, è normale dal momento che non abbiamo ancora creato il nostro database;
-5. Seguite le indicazioni per inizializzarlo ed il sito sarà pronto per operare;
+# 3.2. Data Center Interno
+Si preferisce in questo caso adottare una soluzione interna per numerosi motivi, primo tra tutti la rapidità con la quale è possibile agire fisicamente sulle macchine in caso di malfunzionamento. Fornendo API verso l'esterno infatti, è necessario che il down-time sia minimizzato.
+Per poter usufruire delle API poi, sarà necessario che l'utente si registri e di conseguenza si autentichi, pertanto si prevede l'immagazzinamento di dati sensibili. Avere i server interni quindi significherebbe avere sotto controllo tali dati e poter impliementare le proprie politiche di sicurezza.

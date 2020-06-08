@@ -10,6 +10,7 @@ function getURL($pagina) {
 
     $url .= $_SERVER["SERVER_NAME"];
 
+    // Controllo di sicurezza nel caso il server si trovi su porta differenza
     if($_SERVER["SERVER_PORT"] != "80" && $_SERVER["SERVER_PORT"] != "443") {
         $url .= ":" . $_SERVER["SERVER_PORT"];
     }
@@ -17,6 +18,7 @@ function getURL($pagina) {
     return $url . $pagina;
 }
 
+//RESTITUISCE: array contenente i dati della nuova icona, se essa è stata caricata o meno
 function caricaFile($submit, $fileDaCaricare, $cartellaFinale){
     $cartella = "../static/".$cartellaFinale."/";
     
