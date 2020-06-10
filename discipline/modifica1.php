@@ -30,7 +30,7 @@
 
                         $file = caricaFile($_POST["submit"], $_FILES["icona"], "discipline");
                         if($file["caricamentoRiuscito"]){
-                            $sql = "UPDATE discipline SET disciplina = \"".$nome."\",, idSport = \"".$sport."\" icona = \"".$file["nomeIcona"]."\" WHERE idDisciplina = ".$id;
+                            $sql = "UPDATE discipline SET disciplina = \"".$nome."\", idSport = \"".$sport."\", icona = \"".$file["nomeIcona"]."\" WHERE idDisciplina = ".$id;
                             //elimino la vecchia immagine se il caricamento di quella nuova è avvenuto con successo
                             if($vecchiaIcona != "NULL")
                                 unlink("../static/discipline/".$vecchiaIcona);
