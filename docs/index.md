@@ -11,7 +11,7 @@ L'ambito del progetto potrebbe essere quello di un'azienda che gestisce le stati
 
 La relazione che si crea tra `sports e discipline è di 1 a N` ( a uno sport corrispondono una o più discipline, ma ad un disciplina corrisponde uno ed uno solo sport ).
 
-La relazione che si crea tra `nazioni e discipline è N a N` ( ad una nazione corrispondono una o più discipline e viceversa )
+La relazione che si crea tra `nazioni e discipline è N a N` ( ad una nazione corrispondono una o più discipline e viceversa ).
 
 ## 1.2. Schema Logico
 
