@@ -27,7 +27,7 @@ Questi permettono di assicurare la `consistenza` dei dati all'interno del databa
 
 Inoltre vi si trova un `vincolo di dominio` nel campo `medaglia` della tabella `medaglie`: esso può assumere solamente valori numerici di tipo intero da 1 a 3 ( estremi compresi, ma è presente un controllo che impedisce l'inserimento di valori estranei a questo vincolo ).
 
-L'univocità di ogni record è possibile grazie alle `chiavi primarie` presenti in ogni tabella ( PK ). Non è presente il controllo sui valori immessi durante l'inserimento e la modifica, per tanto bisogna fare attenzione durante queste due fasi.
+L'univocità di ogni record è possibile grazie alle `chiavi primarie` presenti in ogni tabella ( PK ).
 
 ## 1.4. I Linguaggi
 Ho scelto `PHP` ( Personal Home Page inizialmente, poi modificato in Hypertext Preprocessor ), un linguaggio di scripting lato server interpretato, in quanto molto semplice ed adatto per lo sviluppo dell'intero progetto. 
@@ -102,7 +102,7 @@ Si pensa di creare una rete interna per l'azienda, che offrirà i servizi agli u
 
 ![Rete](./images/rete.png)
 
-# 3.1. Connessioni e apparecchiatura di rete
+## 3.1. Connessioni e apparecchiatura di rete
 Il progetto richiede l'utilizzo di 5 switch e 2 router per collegare:
 - 8 PC;
 - 2 stampanti;
@@ -119,11 +119,14 @@ Per tutte le connessione si propongono cavi `F/UTP`( Foiled Unshielded Twisted P
 
 Data la semplicità della rete, non si prevede un server DHCP (Dynamic Host Configuration Protocol) e non si prevede una rete wireless all'interno degli uffici, questo per evitare accessi non autorizzati e/o sniffing indesiderato.
 
-# 3.2. Servizi verso l'esterno
+## 3.2 Cablaggio Strutturato
+Vista la presenza di un solo edificio, su due piani, si prevede un `cablaggio verticale`, posizionando la sala CED nel sotterraneo che avrà funzione di ​`centro stella di comprensorio` ​dal quale partirà la ​dorsale di edificio ​verso gli altri piani. Viste le dimensioni ridotte dei locali, la sala CED avrà anche funzione di `​centro stella di edificio` ( con conseguente funzione di centro stella di piano per il cablaggio orizzontale della sala ). I locali adibiti a `centro stella di piano` saranno la segreteria e l’ufficio dirigenziale, rispettivamente al piano terra ed al primo piano. Da questi due partirà il `cablaggio orizzontale` con le prese utente per tutto il loro rispettivo piano, attraverso armadi rack a parete.
+
+## 3.3 Servizi verso l'esterno
 Come già citato in precedenza, si vuole offrire agli utenti una serie di servizi attraverso i web servers, che saranno posti all'interno di una `DMZ` ( DeMilitarized Zone ), questo per rendere sicura la rete aziendale interna.
 In pratica si crea la cosidetta `zona cuscinetto`, una zona con traffico strettamente limitato e controllato.
 Il database sarà posto invece all'interno della rete aziendale, questo perché solamente il web server dovrà accedervi direttamente, e lo farà tramite determinate regole dettate dal firewall interno.
 
-# 3.3. Data Center
+## 3.4 Data Center
 Si preferisce in questo caso adottare una soluzione interna per numerosi motivi, primo tra tutti la rapidità con la quale è possibile agire fisicamente sulle macchine in caso di malfunzionamento. Fornendo API verso l'esterno infatti, è necessario che il down-time sia minimizzato.
 Per poter usufruire delle API poi, sarà necessario che l'utente si registri e di conseguenza si autentichi, pertanto si prevede l'immagazzinamento di dati sensibili. Avere i server interni quindi significherebbe avere sotto controllo tali dati e poter impliementare le proprie politiche di sicurezza.
