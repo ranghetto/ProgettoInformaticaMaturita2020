@@ -33,7 +33,7 @@ Provare il sito in un ambiente locale è possibile seguendo questi semplici pass
 3. A questo punto avviare il web server ed accedere al sito tramite browser;
 4. In caso di successo, dovreste trovarvi ad una pagina il cui messaggio è il seguente:
 
-    ![Errore di connessione al database](./images/error-db-connection.png)
+    ![Errore di connessione al database](./docs/images/error-db-connection.png)
 
     Non vi preoccupate, è normale dal momento che non abbiamo ancora creato il nostro database;
 5. Seguite le indicazioni per inizializzarlo ed il sito sarà pronto per operare;

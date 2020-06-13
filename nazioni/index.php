@@ -5,12 +5,12 @@
 <html>
     <head>
         <title>Nazioni ~ Olimpiadi</title>
-        <?php include("../static/bootstrapCSS.html") ?>
+        <?php include("../static/bootstrapCSS.html"); ?>
     </head>
     <body>
-        <?php include("../navbar.php") ?>
+        <?php include("../navbar.php"); ?>
 
-        <?php include("vedi.php") ?>
+        <?php include("vedi.php"); ?>
 
         <!-- Modal Inserimento -->
         <div class="modal fade" id="inserimento" tabindex="-1" role="dialog" aria-labelledby="InserimentoNuovaNazione" aria-hidden="true">
@@ -46,6 +46,6 @@
             </div>
         </div>
 
-        <?php include("../static/bootstrapJS.html") ?>
+        <?php include("../static/bootstrapJS.html"); ?>
     </body>
 </html>
