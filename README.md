@@ -2,20 +2,7 @@
 
 ## Per iniziare
 
-### 1. Leggi la [documentazione](https://ranghetto.github.io/ProgettoInformaticaMaturita2020);
-
-### 2. Il progetto ha bisogno di un file `PHP` all'interno della root principale chiamato `dati.php`:
-```php
-<?php
-    $host = "iltuohostname.it";
-    $user = "username";
-    $pwd = "password";
-    $schema = "nome_del_database";
-?>
-```
-modificalo secondo le tue esigenze;
-
-### 3. Test in locale
+### 2. Provalo in locale
 Provare il sito in un ambiente locale è possibile seguendo questi semplici passaggi:
 1. Scaricare tutti i file e copiarli nella directory dedicata nel proprio web server;
 2. Creare nella root principale un file chiamato `dati.php` e incollare al suo interno il seguente codice:
