@@ -5,13 +5,13 @@
 <html>
     <head>
         <title>Olimpiadi</title>
-        <?php include("./static/bootstrapCSS.html") ?>
+        <?php include("./static/bootstrapCSS.html"); ?>
     </head>
     <body>
-        <?php include("./navbar.php") ?>
+        <?php include("./navbar.php"); ?>
+        
+        <?php include("./medagliere/vedi.php"); ?>
 
-        <?php include("./medagliere/vedi.php") ?>
-
-        <?php include("./static/bootstrapJS.html") ?>
+        <?php include("./static/bootstrapJS.html"); ?>
     </body>
 </html>
