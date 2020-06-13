@@ -26,7 +26,7 @@
         $query = mysqli_query($conn, $sql);
         if($query){
             if (mysqli_num_rows($query) === 0){
-                $body .= "  <div class='col-md-4 offset-md-4 alert alert-warning alert-dismissible fade show' role='alert'>
+                $body .= "  <div class='col-md-6 offset-md-3 alert alert-warning alert-dismissible fade show' role='alert'>
                                 <strong>Nessuna corrispondenza nel database! Inserisci almeno una <a href='../nazioni'>nazione</a>!</strong>
                                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                                     <span aria-hidden='true'>&times;</span>
