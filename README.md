@@ -2,7 +2,7 @@
 
 ## Per iniziare
 
-### 2. Provalo in locale
+### Provalo in locale
 Provare il sito in un ambiente locale è possibile seguendo questi semplici passaggi:
 1. Scaricare tutti i file e copiarli nella directory dedicata nel proprio web server;
 2. Creare nella root principale un file chiamato `dati.php` e incollare al suo interno il seguente codice:
